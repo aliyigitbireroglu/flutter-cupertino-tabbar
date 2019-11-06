@@ -1,0 +1,43 @@
+name            : example
+description     : Example Project for cupertino_tabbar.
+version         : 1.0.0
+author          : Ali Yigit Bireroglu <aliyigitbireroglu@gmail.com>
+repository      : https://github.com/aliyigitbireroglu/flutter-cupertino-tabbar
+homepage        : https://www.cosmossoftware.coffee
+
+environment     :
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies    :
+  flutter         :
+    sdk: flutter
+  cupertino_tabbar:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter         :
+  uses-material-design: true
+  fonts               :
+    - family: SFProRounded
+      fonts :
+        - asset : fonts/SF-Pro-Rounded-Black.otf
+          weight: 900
+        - asset : fonts/SF-Pro-Rounded-Bold.otf
+          weight: 700
+        - asset : fonts/SF-Pro-Rounded-Heavy.otf
+          weight: 800
+        - asset : fonts/SF-Pro-Rounded-Light.otf
+          weight: 300
+        - asset : fonts/SF-Pro-Rounded-Medium.otf
+          weight: 500
+        - asset : fonts/SF-Pro-Rounded-Regular.otf
+          weight: 400
+        - asset : fonts/SF-Pro-Rounded-Semibold.otf
+          weight: 600
+        - asset : fonts/SF-Pro-Rounded-Thin.otf
+          weight: 200
+        - asset : fonts/SF-Pro-Rounded-Ultralight.otf
+          weight: 100
