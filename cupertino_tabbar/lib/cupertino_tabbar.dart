@@ -40,6 +40,9 @@ class CupertinoTabBar extends StatefulWidget {
   ///The duration that is to be used for the animations of the moving selection bar.
   final Duration duration;
 
+  ///Set this value to true if you want this [CupertinoTabBar] to expand to fill the available gap.
+  final bool expand;
+
   const CupertinoTabBar(
     this._backgroundColor,
     this._foregroundColor,
@@ -52,6 +55,7 @@ class CupertinoTabBar extends StatefulWidget {
     this.verticalPadding: 10.0,
     this.borderRadius: const BorderRadius.all(const Radius.circular(10.0)),
     this.duration: const Duration(milliseconds: 250),
+    this.expand: false,
   }) : super(key: key);
 
   @override
@@ -94,6 +98,9 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> {
     for (int i = 0; i < widget._widgets.length; i++) {
       _globalKeys.add(GlobalKey());
     }
+    if (widget.expand) {
+      _globalKeys.add(GlobalKey());
+    }
     _showSelf = false;
     WidgetsBinding.instance.addPostFrameCallback(onPostFrameCallback);
   }
@@ -111,17 +118,25 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> {
   Widget build(BuildContext context) {
     if (!_showSelf) {
       return Stack(
-        children: List<Widget>.generate(widget._widgets.length, (int index) {
-          return Container(
-            key: _globalKeys[index],
-            child: widget._widgets[index],
-          );
+        children: List<Widget>.generate(_globalKeys.length, (int index) {
+          if (index < widget._widgets.length) {
+            return Container(
+              key: _globalKeys[index],
+              child: widget._widgets[index],
+            );
+          } else {
+            return Container(
+              key: _globalKeys[index],
+              constraints: widget.expand ? BoxConstraints.expand(height: 1) : null,
+            );
+          }
         }),
       );
     } else {
       return Container(
-        height: _maxHeight,
-        width: (_maxWidth + widget.horizontalPadding * 2.0) * widget._widgets.length,
+        height: widget.expand ? null : _maxHeight,
+        width: widget.expand ? null : (_maxWidth + widget.horizontalPadding * 2.0) * widget._widgets.length,
+        constraints: widget.expand ? BoxConstraints.expand(height: _maxHeight) : null,
         decoration: BoxDecoration(
           color: widget._backgroundColor,
           borderRadius: widget.borderRadius,
@@ -135,8 +150,9 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> {
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: Container(
-                  height: _maxHeight,
-                  width: _maxWidth + widget.horizontalPadding * 2.0,
+                  height: widget.expand ? null : _maxHeight,
+                  width: widget.expand ? null : _maxWidth + widget.horizontalPadding * 2.0,
+                  constraints: widget.expand ? BoxConstraints.expand(width: _maxWidth / widget._widgets.length - widget.horizontalPadding * 2.0) : null,
                   decoration: BoxDecoration(
                     color: widget._foregroundColor,
                     borderRadius: widget.borderRadius,

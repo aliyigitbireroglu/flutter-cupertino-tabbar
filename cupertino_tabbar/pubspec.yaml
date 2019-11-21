@@ -1,6 +1,6 @@
 name            : cupertino_tabbar
 description     : A highly customisable and simple widget for having iOS 13 style tab bars.
-version         : 1.0.0
+version         : 1.0.1
 author          : Ali Yigit Bireroglu <aliyigitbireroglu@gmail.com>
 repository      : https://github.com/aliyigitbireroglu/flutter-cupertino-tabbar
 homepage        : https://www.cosmossoftware.coffee

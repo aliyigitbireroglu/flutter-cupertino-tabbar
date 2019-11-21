@@ -44,6 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int cupertinoTabBarIVValueGetter() => cupertinoTabBarIVValue;
   int cupertinoTabBarVValue = 0;
   int cupertinoTabBarVValueGetter() => cupertinoTabBarVValue;
+  int cupertinoTabBarVIValue = 0;
+  int cupertinoTabBarVIValueGetter() => cupertinoTabBarVIValue;
 
   @override
   Widget build(BuildContext context) {
@@ -298,6 +300,70 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
               useSeparators: true,
+            ),
+            Container(
+              constraints: const BoxConstraints.expand(height: 20.0),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 10,
+                right: 10,
+              ),
+              child: CupertinoTabBar.CupertinoTabBar(
+                cupertinoTabBarIVValue == 0 ? const Color(0xFF943855) : cupertinoTabBarIVValue == 1 ? const Color(0xFF207561) : cupertinoTabBarIVValue == 2 ? const Color(0xFFf0dd92) : const Color(0xFF4f81c7),
+                cupertinoTabBarIVValue == 0 ? const Color(0xFFeb7070) : cupertinoTabBarIVValue == 1 ? const Color(0xFF589167) : cupertinoTabBarIVValue == 2 ? const Color(0xFFffffc5) : const Color(0xFF64c4ed),
+                [
+                  Text(
+                    "A",
+                    style: TextStyle(
+                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      fontSize: 18.75,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "SFProRounded",
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    "BC",
+                    style: TextStyle(
+                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      fontSize: 18.75,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "SFProRounded",
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    "DEFG",
+                    style: TextStyle(
+                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      fontSize: 18.75,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "SFProRounded",
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    "HIJKLM",
+                    style: TextStyle(
+                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      fontSize: 18.75,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "SFProRounded",
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+                cupertinoTabBarIVValueGetter,
+                (int index) {
+                  setState(() {
+                    cupertinoTabBarIVValue = index;
+                  });
+                },
+                horizontalPadding: 2.5,
+                useSeparators: true,
+                expand: true,
+              ),
             ),
           ],
         ),
