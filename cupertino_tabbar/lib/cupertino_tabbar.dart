@@ -37,9 +37,6 @@ class CupertinoTabBar extends StatefulWidget {
   ///The border radius that is to be used to display this [CupertinoTabBar] and the moving selection bar. The default value corresponds to the default iOS 13 value.
   final BorderRadius borderRadius;
 
-  ///The curve which this [CupertinoTabBar] uses to animate the switching of tabs.
-  final Curve curve;
-
   ///The duration that is to be used for the animations of the moving selection bar.
   final Duration duration;
 
@@ -57,8 +54,7 @@ class CupertinoTabBar extends StatefulWidget {
     this.horizontalPadding: 10.0,
     this.verticalPadding: 10.0,
     this.borderRadius: const BorderRadius.all(const Radius.circular(10.0)),
-    this.curve: Curves.linearToEaseOut,
-    this.duration: const Duration(milliseconds: 350),
+    this.duration: const Duration(milliseconds: 250),
     this.expand: false,
   }) : super(key: key);
 
@@ -151,7 +147,6 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> {
             AnimatedAlign(
               alignment: _getAlignment(),
               duration: widget.duration,
-              curve: widget.curve,
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: Container(
