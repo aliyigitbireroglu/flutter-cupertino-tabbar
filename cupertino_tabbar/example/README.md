@@ -61,7 +61,9 @@ CupertinoTabBar(
   horizontalPadding : 10.0,
   verticalPadding   : 10.0,
   borderRadius      : const BorderRadius.all(const Radius.circular(10.0)),
-  duration          : const Duration(milliseconds: 250)})
+  curve             : Curves.linearToEaseOut,
+  duration          : const Duration(milliseconds: 350),
+  expand            : false})
 )
 
 int cupertinoTabBarValue = 0;

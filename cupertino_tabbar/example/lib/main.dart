@@ -310,13 +310,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 right: 10,
               ),
               child: CupertinoTabBar.CupertinoTabBar(
-                cupertinoTabBarIVValue == 0 ? const Color(0xFF943855) : cupertinoTabBarIVValue == 1 ? const Color(0xFF207561) : cupertinoTabBarIVValue == 2 ? const Color(0xFFf0dd92) : const Color(0xFF4f81c7),
-                cupertinoTabBarIVValue == 0 ? const Color(0xFFeb7070) : cupertinoTabBarIVValue == 1 ? const Color(0xFF589167) : cupertinoTabBarIVValue == 2 ? const Color(0xFFffffc5) : const Color(0xFF64c4ed),
+                cupertinoTabBarVIValue == 0 ? const Color(0xFF943855) : cupertinoTabBarVIValue == 1 ? const Color(0xFF207561) : cupertinoTabBarVIValue == 2 ? const Color(0xFFf0dd92) : const Color(0xFF4f81c7),
+                cupertinoTabBarVIValue == 0 ? const Color(0xFFeb7070) : cupertinoTabBarVIValue == 1 ? const Color(0xFF589167) : cupertinoTabBarVIValue == 2 ? const Color(0xFFffffc5) : const Color(0xFF64c4ed),
                 [
                   Text(
                     "A",
                     style: TextStyle(
-                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      color: cupertinoTabBarVIValue == 2 ? Colors.black : Colors.white,
                       fontSize: 18.75,
                       fontWeight: FontWeight.w400,
                       fontFamily: "SFProRounded",
@@ -326,7 +326,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(
                     "BC",
                     style: TextStyle(
-                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      color: cupertinoTabBarVIValue == 2 ? Colors.black : Colors.white,
                       fontSize: 18.75,
                       fontWeight: FontWeight.w400,
                       fontFamily: "SFProRounded",
@@ -336,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(
                     "DEFG",
                     style: TextStyle(
-                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      color: cupertinoTabBarVIValue == 2 ? Colors.black : Colors.white,
                       fontSize: 18.75,
                       fontWeight: FontWeight.w400,
                       fontFamily: "SFProRounded",
@@ -346,7 +346,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(
                     "HIJKLM",
                     style: TextStyle(
-                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      color: cupertinoTabBarVIValue == 2 ? Colors.black : Colors.white,
                       fontSize: 18.75,
                       fontWeight: FontWeight.w400,
                       fontFamily: "SFProRounded",
@@ -354,10 +354,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     textAlign: TextAlign.center,
                   ),
                 ],
-                cupertinoTabBarIVValueGetter,
+                cupertinoTabBarVIValueGetter,
                 (int index) {
                   setState(() {
-                    cupertinoTabBarIVValue = index;
+                    cupertinoTabBarVIValue = index;
                   });
                 },
                 horizontalPadding: 2.5,
