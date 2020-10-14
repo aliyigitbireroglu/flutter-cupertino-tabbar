@@ -1,3 +1,14 @@
+## [1.1.0] - 14.10.2020
+
+* Variables previously named as [horizontalPadding], [verticalPadding] and [expand] are now named [innerHorizontalPadding], [innerVerticalPadding] and [allowExpand]. 
+
+* [useShadow] is added. If set to true, a shadow will be displayed under the indicator that is much more similar to the actual iOS version. See this 
+  [video](https://youtu.be/rK_FhhJI0Og) for examples.
+
+* [allowScrollable], [fittedWhenScrollable], [animateWhenScrollable], [animateUntilScrolled], [outerHorizontalPadding] and [outerVerticalPadding] are added.
+  These all work towards making an easy-to-use scrollable tab bar. Please refer the documentation and the examples for instructions and see this 
+  [video](https://youtu.be/rK_FhhJI0Og) for examples.
+  
 ## [1.0.3] - 11.10.2020
 
 * Minor changes.

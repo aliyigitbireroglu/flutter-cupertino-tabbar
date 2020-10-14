@@ -40,25 +40,38 @@ class _MyHomePageState extends State<MyHomePage> {
   int cupertinoTabBarIIValueGetter() => cupertinoTabBarIIValue;
   int cupertinoTabBarIIIValue = 3;
   int cupertinoTabBarIIIValueGetter() => cupertinoTabBarIIIValue;
-  int cupertinoTabBarIVValue = 2;
+  int cupertinoTabBarIVValue = 0;
   int cupertinoTabBarIVValueGetter() => cupertinoTabBarIVValue;
   int cupertinoTabBarVValue = 0;
   int cupertinoTabBarVValueGetter() => cupertinoTabBarVValue;
   int cupertinoTabBarVIValue = 0;
   int cupertinoTabBarVIValueGetter() => cupertinoTabBarVIValue;
+  int cupertinoTabBarVIIValue = 2;
+  int cupertinoTabBarVIIValueGetter() => cupertinoTabBarVIIValue;
+  int cupertinoTabBarVIIIValue = 2;
+  int cupertinoTabBarVIIIValueGetter() => cupertinoTabBarVIIIValue;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF2F2F7),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFF9F9F9),
-        title: Text(widget.title),
-      ),
+      backgroundColor: const Color(0xFF2B292B),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              "Simple Examples",
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                fontFamily: "SFProRounded",
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Container(
+              constraints: const BoxConstraints.expand(height: 10.0),
+            ),
             CupertinoTabBar.CupertinoTabBar(
               cupertinoTabBarIValue == 0 ? const Color(0xFF293a80) : const Color(0xFFf88020),
               cupertinoTabBarIValue == 0 ? const Color(0xFF537ec5) : const Color(0xFFd1274b),
@@ -191,10 +204,70 @@ class _MyHomePageState extends State<MyHomePage> {
                   cupertinoTabBarIIIValue = index;
                 });
               },
-              horizontalPadding: 5,
+              useShadow: false,
+              innerHorizontalPadding: 5,
             ),
             Container(
               constraints: const BoxConstraints.expand(height: 20.0),
+            ),
+            CupertinoTabBar.CupertinoTabBar(
+              Colors.transparent,
+              const Color(0xFFe9e5dd),
+              [
+                Text(
+                  "Tab 1",
+                  style: TextStyle(
+                    color: cupertinoTabBarIVValue == 0 ? Colors.black : Colors.white,
+                    fontSize: 18.75 * 1.5,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Tab 2",
+                  style: TextStyle(
+                    color: cupertinoTabBarIVValue == 1 ? Colors.black : Colors.white,
+                    fontSize: 18.75 * 1.5,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Tab 3",
+                  style: TextStyle(
+                    color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                    fontSize: 18.75 * 1.5,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+              cupertinoTabBarIVValueGetter,
+              (int index) {
+                setState(() {
+                  cupertinoTabBarIVValue = index;
+                });
+              },
+              useSeparators: true,
+            ),
+            Container(
+              constraints: const BoxConstraints.expand(height: 20.0),
+            ),
+            Text(
+              "Regular vs Extended",
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                fontFamily: "SFProRounded",
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Container(
+              constraints: const BoxConstraints.expand(height: 10.0),
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -202,13 +275,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 right: 10,
               ),
               child: CupertinoTabBar.CupertinoTabBar(
-                cupertinoTabBarIVValue == 0 ? const Color(0xFF943855) : cupertinoTabBarIVValue == 1 ? const Color(0xFF207561) : cupertinoTabBarIVValue == 2 ? const Color(0xFFf0dd92) : const Color(0xFF4f81c7),
-                cupertinoTabBarIVValue == 0 ? const Color(0xFFeb7070) : cupertinoTabBarIVValue == 1 ? const Color(0xFF589167) : cupertinoTabBarIVValue == 2 ? const Color(0xFFffffc5) : const Color(0xFF64c4ed),
+                cupertinoTabBarVValue == 0
+                    ? const Color(0xFF943855)
+                    : cupertinoTabBarVValue == 1
+                        ? const Color(0xFF207561)
+                        : cupertinoTabBarVValue == 2
+                            ? const Color(0xFFf0dd92)
+                            : const Color(0xFF4f81c7),
+                cupertinoTabBarVValue == 0
+                    ? const Color(0xFFeb7070)
+                    : cupertinoTabBarVValue == 1
+                        ? const Color(0xFF589167)
+                        : cupertinoTabBarVValue == 2
+                            ? const Color(0xFFffffc5)
+                            : const Color(0xFF64c4ed),
                 [
                   Text(
                     "A",
                     style: TextStyle(
-                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      color: cupertinoTabBarVValue == 2 ? Colors.black : Colors.white,
                       fontSize: 18.75,
                       fontWeight: FontWeight.w400,
                       fontFamily: "SFProRounded",
@@ -218,7 +303,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(
                     "BC",
                     style: TextStyle(
-                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      color: cupertinoTabBarVValue == 2 ? Colors.black : Colors.white,
                       fontSize: 18.75,
                       fontWeight: FontWeight.w400,
                       fontFamily: "SFProRounded",
@@ -228,7 +313,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(
                     "DEFG",
                     style: TextStyle(
-                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      color: cupertinoTabBarVValue == 2 ? Colors.black : Colors.white,
                       fontSize: 18.75,
                       fontWeight: FontWeight.w400,
                       fontFamily: "SFProRounded",
@@ -238,7 +323,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(
                     "HIJKLM",
                     style: TextStyle(
-                      color: cupertinoTabBarIVValue == 2 ? Colors.black : Colors.white,
+                      color: cupertinoTabBarVValue == 2 ? Colors.black : Colors.white,
                       fontSize: 18.75,
                       fontWeight: FontWeight.w400,
                       fontFamily: "SFProRounded",
@@ -246,60 +331,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     textAlign: TextAlign.center,
                   ),
                 ],
-                cupertinoTabBarIVValueGetter,
+                cupertinoTabBarVValueGetter,
                 (int index) {
                   setState(() {
-                    cupertinoTabBarIVValue = index;
+                    cupertinoTabBarVValue = index;
                   });
                 },
                 useSeparators: true,
               ),
-            ),
-            Container(
-              constraints: const BoxConstraints.expand(height: 20.0),
-            ),
-            CupertinoTabBar.CupertinoTabBar(
-              Colors.transparent,
-              const Color(0xFFe9e5dd),
-              [
-                const Text(
-                  "Tab 1",
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.75 * 1.5,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "SFProRounded",
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const Text(
-                  "Tab 2",
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.75 * 1.5,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "SFProRounded",
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const Text(
-                  "Tab 3",
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.75 * 1.5,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "SFProRounded",
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-              cupertinoTabBarVValueGetter,
-              (int index) {
-                setState(() {
-                  cupertinoTabBarVValue = index;
-                });
-              },
-              useSeparators: true,
             ),
             Container(
               constraints: const BoxConstraints.expand(height: 20.0),
@@ -310,8 +349,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 right: 10,
               ),
               child: CupertinoTabBar.CupertinoTabBar(
-                cupertinoTabBarVIValue == 0 ? const Color(0xFF943855) : cupertinoTabBarVIValue == 1 ? const Color(0xFF207561) : cupertinoTabBarVIValue == 2 ? const Color(0xFFf0dd92) : const Color(0xFF4f81c7),
-                cupertinoTabBarVIValue == 0 ? const Color(0xFFeb7070) : cupertinoTabBarVIValue == 1 ? const Color(0xFF589167) : cupertinoTabBarVIValue == 2 ? const Color(0xFFffffc5) : const Color(0xFF64c4ed),
+                cupertinoTabBarVIValue == 0
+                    ? const Color(0xFF943855)
+                    : cupertinoTabBarVIValue == 1
+                        ? const Color(0xFF207561)
+                        : cupertinoTabBarVIValue == 2
+                            ? const Color(0xFFf0dd92)
+                            : const Color(0xFF4f81c7),
+                cupertinoTabBarVIValue == 0
+                    ? const Color(0xFFeb7070)
+                    : cupertinoTabBarVIValue == 1
+                        ? const Color(0xFF589167)
+                        : cupertinoTabBarVIValue == 2
+                            ? const Color(0xFFffffc5)
+                            : const Color(0xFF64c4ed),
                 [
                   Text(
                     "A",
@@ -360,10 +411,298 @@ class _MyHomePageState extends State<MyHomePage> {
                     cupertinoTabBarVIValue = index;
                   });
                 },
-                horizontalPadding: 2.5,
                 useSeparators: true,
-                expand: true,
+                allowExpand: true,
               ),
+            ),
+            Container(
+              constraints: const BoxConstraints.expand(height: 20.0),
+            ),
+            Text(
+              "Regular Scrollable vs Fitted Scrollable",
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                fontFamily: "SFProRounded",
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Container(
+              constraints: const BoxConstraints.expand(height: 10.0),
+            ),
+            CupertinoTabBar.CupertinoTabBar(
+              const Color(0xFFf0dd92),
+              const Color(0xFFffffc5),
+              [
+                const Text(
+                  "Option A",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option B",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option C",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option D",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option E",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option F",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option H",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option I",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option J",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option K",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option L",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option M",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+              cupertinoTabBarVIIValueGetter,
+              (int index) {
+                setState(() {
+                  cupertinoTabBarVIIValue = index;
+                });
+              },
+              useSeparators: true,
+              allowScrollable: true,
+            ),
+            Container(
+              constraints: const BoxConstraints.expand(height: 20.0),
+            ),
+            CupertinoTabBar.CupertinoTabBar(
+              const Color(0xFFf0dd92),
+              const Color(0xFFffffc5),
+              [
+                const Text(
+                  "Option A",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option B",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option C",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option D",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option E",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option F",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option H",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option I",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option J",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option K",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option L",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Text(
+                  "Option M",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.75,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFProRounded",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+              cupertinoTabBarVIIIValueGetter,
+              (int index) {
+                setState(() {
+                  cupertinoTabBarVIIIValue = index;
+                });
+              },
+              useSeparators: true,
+              allowScrollable: true,
+              fittedWhenScrollable: true,
+              animateWhenScrollable: false,
             ),
           ],
         ),

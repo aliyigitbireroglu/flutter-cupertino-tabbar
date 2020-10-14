@@ -1,8 +1,3 @@
-# example
-
-Example Project for Example Project for cupertino_tabbar.
-
-
 # cupertino_tabbar
 
 [comment]: <> (Badges)
@@ -21,6 +16,20 @@ A highly customisable and simple widget for having iOS 13 style tab bars.
 [comment]: <> (ToC)
 [Media](#media) | [Description](#description) | [Installation](#installation) | [How-to-Use](#howtouse)
 
+[comment]: <> (Recent)
+## Recent
+* **[useShadow] is added. If set to true, a shadow will be displayed under the indicator that is much more similar to the actual iOS version.
+    See [Media](#media) for examples.**
+    
+* **[allowScrollable], [fittedWhenScrollable], [animateWhenScrollable], [animateUntilScrolled], [outerHorizontalPadding] and [outerVerticalPadding] are added.
+    These all work towards making an easy-to-use scrollable tab bar. Please refer to the documentation and the examples for instructions and see [Media](#media) for 
+    examples.**
+* * *
+[comment]: <> (Warning)
+## Warning
+* **Variables previously named as [horizontalPadding], [verticalPadding] and [expand] are now named [innerHorizontalPadding], [innerVerticalPadding] and [allowExpand].**
+* * *
+
 
 [comment]: <> (Media)
 <a name="media"></a>
@@ -28,9 +37,12 @@ A highly customisable and simple widget for having iOS 13 style tab bars.
 
 Watch on **Youtube**:
 
-[v1.0.0](https://youtu.be/UELwqzHGFOE)
+[**v1.1.0**](https://youtu.be/rK_FhhJI0Og)
 <br><br>
-<img src="https://www.cosmossoftware.coffee/Common/Portfolio/GIFs/FlutterCupertinoTabBar.gif" height="450" max-height="450"/>
+[v1.0.0](https://youtu.be/UELwqzHGFOE)
+
+<br><br>
+<img src="https://www.cosmossoftware.coffee/Common/Portfolio/GIFs/FlutterCupertinoTabBarNew.gif" height="450" max-height="450"/>
 <br><br>
 
 
@@ -57,13 +69,19 @@ CupertinoTabBar(
     });
   },
   {Key key,
-  useSeparators     : false,
-  horizontalPadding : 10.0,
-  verticalPadding   : 10.0,
-  borderRadius      : const BorderRadius.all(const Radius.circular(10.0)),
-  curve             : Curves.linearToEaseOut,
-  duration          : const Duration(milliseconds: 350),
-  expand            : false})
+  useSeparators             : false,
+  innerHorizontalPadding    : 10.0,
+  innerVerticalPadding      : 10.0,
+  borderRadius              : const BorderRadius.all(const Radius.circular(10.0)),
+  curve                     : Curves.linearToEaseOut,
+  duration                  : const Duration(milliseconds: 350),
+  allowExpand               : false,
+  allowScrollable           : false,
+  fittedWhenScrollable      : false,
+  animateWhenScrollable     : false,
+  animateUntilScrolled      : false,
+  outerHorizontalPadding    : 10.0,,
+  outerVerticalPadding      : 0})
 )
 
 int cupertinoTabBarValue = 0;
@@ -73,6 +91,8 @@ int cupertinoTabBarValueGetter() => cupertinoTabBarIValue;
 **Further Explanations:**
 
 *For a complete set of descriptions for all parameters and methods, see the [documentation](https://pub.dev/documentation/cupertino_tabbar/latest/).*
+
+* Do not set both [allowExpand] and [allowScrollable] to true.
 
 
 [comment]: <> (Notes)
