@@ -155,7 +155,9 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
     return _targetOffset;
   }
 
-  Alignment get _alignment => Alignment(-1.0 + widget._valueGetter() / (widget._widgets.length - 1) * 2, 0.0);
+  bool get isRTL => Directionality.of(context) == TextDirection.rtl;
+
+  Alignment get _alignment => Alignment((isRTL ? -1 : 1) * (-1.0 + widget._valueGetter() / (widget._widgets.length - 1) * 2), 0.0);
 
   void _startAnimation() {
     _animationTimer = Timer(const Duration(seconds: 4), () => _animationController.forward(from: 0.0));
