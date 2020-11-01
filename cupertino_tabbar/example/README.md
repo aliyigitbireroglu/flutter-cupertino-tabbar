@@ -90,7 +90,7 @@ CupertinoTabBar(
 )
 
 int cupertinoTabBarValue = 0;
-int cupertinoTabBarValueGetter() => cupertinoTabBarIValue;
+int cupertinoTabBarValueGetter() => cupertinoTabBarValue;
 ```
 
 **Further Explanations:**

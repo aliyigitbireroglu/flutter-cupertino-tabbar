@@ -1,3 +1,7 @@
+## [1.1.1] - 01.11.2020
+
+* Minor changes.
+
 ## [1.1.0] - 14.10.2020
 
 * Variables previously named as [horizontalPadding], [verticalPadding] and [expand] are now named [innerHorizontalPadding], [innerVerticalPadding] and [allowExpand]. 
