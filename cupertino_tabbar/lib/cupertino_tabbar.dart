@@ -76,7 +76,7 @@ class CupertinoTabBar extends StatefulWidget {
     this._widgets,
     this._valueGetter,
     this._onTap, {
-    Key key,
+    Key? key,
     this.useSeparators: false,
     this.useShadow: true,
     this.innerHorizontalPadding: 10.0,
@@ -100,49 +100,49 @@ class CupertinoTabBar extends StatefulWidget {
 }
 
 class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProviderStateMixin {
-  List<GlobalKey> _globalKeys;
-  double _maxWidth;
-  double _maxHeight;
-  double _fullWidth;
-  double _fullHeight;
-  double _preferredHeight;
-  double _preferredWidth;
-  double _usedHeight;
-  double _usedWidth;
-  double _singleHeight;
-  double _singleWidth;
-  double _outerContainerHeight;
-  double _outerContainerWidth;
-  double _innerContainerHeight;
-  double _innerContainerWidth;
-  double _separatorHeight;
-  double _separatorWidth;
-  double _indicatorHeight;
-  double _indicatorWidth;
-  bool _showSelf;
+  late List<GlobalKey> _globalKeys;
+  double? _maxWidth;
+  double? _maxHeight;
+  double? _fullWidth;
+  double? _fullHeight;
+  double? _preferredHeight;
+  double? _preferredWidth;
+  double? _usedHeight;
+  double? _usedWidth;
+  double? _singleHeight;
+  late double _singleWidth;
+  double? _outerContainerHeight;
+  double? _outerContainerWidth;
+  double? _innerContainerHeight;
+  double? _innerContainerWidth;
+  double? _separatorHeight;
+  double? _separatorWidth;
+  double? _indicatorHeight;
+  double? _indicatorWidth;
+  late bool _showSelf;
 
-  ScrollController _scrollController;
-  double _initialScrollOffset;
-  bool _userHasScrolled;
+  ScrollController? _scrollController;
+  late double _initialScrollOffset;
+  late bool _userHasScrolled;
 
-  AnimationController _animationController;
-  Timer _animationTimer;
-  List<double> _tresholds;
+  AnimationController? _animationController;
+  Timer? _animationTimer;
+  late List<double> _tresholds;
 
   bool get _shouldBeExpanded => widget.allowExpand && !widget.allowScrollable;
-  bool get _shouldBeScrollable => !widget.allowExpand && widget.allowScrollable && _preferredWidth > _fullWidth;
+  bool get _shouldBeScrollable => !widget.allowExpand && widget.allowScrollable && _preferredWidth! > _fullWidth!;
   bool get _shouldBeFitted => widget.fittedWhenScrollable;
   bool get _shouldBeAnimated => widget.animateWhenScrollable;
   bool get _shouldCalculateFullDimensions => widget.allowExpand || widget.allowScrollable;
 
-  bool get _isScrollByUser => _animationController == null || !_animationController.isAnimating;
-  bool get _shouldBeReanimated => widget.animateUntilScrolled && !_userHasScrolled && _animationController.isCompleted;
+  bool get _isScrollByUser => _animationController == null || !_animationController!.isAnimating;
+  bool get _shouldBeReanimated => widget.animateUntilScrolled && !_userHasScrolled && _animationController!.isCompleted;
 
-  bool get _shouldBeRescrolled => _scrollController.offset != _offset;
+  bool get _shouldBeRescrolled => _scrollController!.offset != _offset;
   double get _offset {
-    double _scrollControllerOffset = _scrollController != null && _scrollController.positions.isNotEmpty ? _scrollController.offset : 0.0;
+    double _scrollControllerOffset = _scrollController != null && _scrollController!.positions.isNotEmpty ? _scrollController!.offset : 0.0;
     double _areaStartingPoint = _scrollControllerOffset;
-    double _areaEndingPoint = _areaStartingPoint + _fullWidth;
+    double _areaEndingPoint = _areaStartingPoint + _fullWidth!;
     double _tabStartingPoint = widget.outerHorizontalPadding / 2.0 + _singleWidth * widget._valueGetter();
     double _tabEndingPoint = _tabStartingPoint + _singleWidth + widget.outerHorizontalPadding / 2.0;
     double _targetOffset = _scrollControllerOffset;
@@ -151,7 +151,7 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
     } else if (_tabStartingPoint < _areaStartingPoint + _singleWidth * 0.25) {
       _targetOffset -= (_areaStartingPoint - _tabStartingPoint) + _singleWidth * 1.25;
     }
-    _targetOffset = _targetOffset.clamp(0.0, _preferredWidth - _fullWidth + widget.outerHorizontalPadding * 2);
+    _targetOffset = _targetOffset.clamp(0.0, _preferredWidth! - _fullWidth! + widget.outerHorizontalPadding * 2);
     return _targetOffset;
   }
 
@@ -159,7 +159,7 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
   Alignment get _alignment => Alignment((_isRTL ? -1 : 1) * (-1.0 + widget._valueGetter() / (widget._widgets.length - 1) * 2), 0.0);
 
   void _startAnimation() {
-    _animationTimer = Timer(const Duration(seconds: 4), () => _animationController.forward(from: 0.0));
+    _animationTimer = Timer(const Duration(seconds: 4), () => _animationController!.forward(from: 0.0));
   }
 
   void _stopAnimation() {
@@ -169,16 +169,16 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
   }
 
   void _applyAnimation() {
-    if (_animationController.value < _tresholds[0]) {
-      _scrollController.jumpTo(_initialScrollOffset + _animationController.value);
-    } else if (_animationController.value >= _tresholds[0] && _animationController.value < _tresholds[1]) {
-      _scrollController.jumpTo(_initialScrollOffset + _tresholds[0] - (_animationController.value - _tresholds[0]));
-    } else if (_animationController.value >= _tresholds[1] && _animationController.value < _tresholds[2]) {
-      _scrollController.jumpTo(_initialScrollOffset - _tresholds[0] + (_animationController.value - _tresholds[1]));
-    } else if (_animationController.value >= _tresholds[2] && _animationController.value < _animationController.upperBound * 0.95) {
-      _scrollController.jumpTo(_initialScrollOffset + _tresholds[0] - (_animationController.value - _tresholds[2]));
+    if (_animationController!.value < _tresholds[0]) {
+      _scrollController!.jumpTo(_initialScrollOffset + _animationController!.value);
+    } else if (_animationController!.value >= _tresholds[0] && _animationController!.value < _tresholds[1]) {
+      _scrollController!.jumpTo(_initialScrollOffset + _tresholds[0] - (_animationController!.value - _tresholds[0]));
+    } else if (_animationController!.value >= _tresholds[1] && _animationController!.value < _tresholds[2]) {
+      _scrollController!.jumpTo(_initialScrollOffset - _tresholds[0] + (_animationController!.value - _tresholds[1]));
+    } else if (_animationController!.value >= _tresholds[2] && _animationController!.value < _animationController!.upperBound * 0.95) {
+      _scrollController!.jumpTo(_initialScrollOffset + _tresholds[0] - (_animationController!.value - _tresholds[2]));
     } else {
-      _scrollController.jumpTo(_initialScrollOffset);
+      _scrollController!.jumpTo(_initialScrollOffset);
     }
   }
 
@@ -190,7 +190,7 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
 
   void animationListener() {
     setState(() {
-      if (_animationController.isAnimating) {
+      if (_animationController!.isAnimating) {
         _applyAnimation();
       }
       if (_shouldBeReanimated) {
@@ -205,31 +205,31 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
         _maxWidth = 0;
         _maxHeight = 0;
         for (int i = 0; i < widget._widgets.length; i++) {
-          RenderBox _renderBox = _globalKeys[i].currentContext.findRenderObject();
-          if (_renderBox.size.width > _maxWidth) {
+          RenderBox _renderBox = _globalKeys[i].currentContext!.findRenderObject() as RenderBox;
+          if (_renderBox.size.width > _maxWidth!) {
             _maxWidth = _renderBox.size.width;
           }
-          if (_renderBox.size.height > _maxHeight) {
+          if (_renderBox.size.height > _maxHeight!) {
             _maxHeight = _renderBox.size.height;
           }
         }
-        _maxWidth += widget.innerHorizontalPadding * 2.0;
-        _maxHeight += widget.innerVerticalPadding * 2.0;
+        _maxWidth = _maxWidth! + widget.innerHorizontalPadding * 2.0;
+        _maxHeight = _maxHeight! + widget.innerVerticalPadding * 2.0;
 
         if (_shouldCalculateFullDimensions) {
-          RenderBox _renderBox = _globalKeys.last.currentContext.findRenderObject();
-          _fullWidth = _renderBox.size.width > _maxWidth ? _renderBox.size.width : _maxWidth;
-          _fullHeight = _renderBox.size.height > _maxHeight ? _renderBox.size.height : _maxHeight;
+          RenderBox _renderBox = _globalKeys.last.currentContext!.findRenderObject() as RenderBox;
+          _fullWidth = _renderBox.size.width > _maxWidth! ? _renderBox.size.width : _maxWidth;
+          _fullHeight = _renderBox.size.height > _maxHeight! ? _renderBox.size.height : _maxHeight;
         }
 
         _preferredHeight = _maxHeight;
-        _preferredWidth = _maxWidth * widget._widgets.length;
+        _preferredWidth = _maxWidth! * widget._widgets.length;
 
         _usedHeight = _preferredHeight;
         _usedWidth = _shouldBeExpanded ? _fullWidth : _preferredWidth;
 
         _singleHeight = _usedHeight;
-        _singleWidth = _usedWidth / widget._widgets.length;
+        _singleWidth = _usedWidth! / widget._widgets.length;
 
         _outerContainerHeight = _fullHeight;
         _outerContainerWidth = _fullWidth;
@@ -237,7 +237,7 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
         _innerContainerHeight = _preferredHeight;
         _innerContainerWidth = _preferredWidth;
 
-        _separatorHeight = _maxHeight / 2.0;
+        _separatorHeight = _maxHeight! / 2.0;
         _separatorWidth = 1.0;
 
         _indicatorHeight = _singleHeight;
@@ -251,7 +251,7 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
   @override
   void initState() {
     super.initState();
-    _globalKeys = List<GlobalKey>();
+    _globalKeys = [];
     for (int i = 0; i < widget._widgets.length; i++) {
       _globalKeys.add(GlobalKey());
     }
@@ -259,20 +259,20 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
       _globalKeys.add(GlobalKey());
     }
     _showSelf = false;
-    WidgetsBinding.instance.addPostFrameCallback(onPostFrameCallback);
+    WidgetsBinding.instance!.addPostFrameCallback(onPostFrameCallback);
   }
 
   @override
   void dispose() {
-    if (_scrollController != null) _scrollController.dispose();
-    if (_animationController != null) _animationController.dispose();
+    if (_scrollController != null) _scrollController!.dispose();
+    if (_animationController != null) _animationController!.dispose();
     super.dispose();
   }
 
   void onTap(int index) {
     widget._onTap(index);
     if (_shouldBeScrollable && _shouldBeRescrolled) {
-      _scrollController.animateTo(_offset, duration: widget.duration, curve: Curves.decelerate);
+      _scrollController!.animateTo(_offset, duration: widget.duration, curve: Curves.decelerate);
     }
   }
 
@@ -397,11 +397,11 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
               upperBound: _singleWidth * 2.0,
               duration: const Duration(milliseconds: 500),
             )..addListener(animationListener);
-            _animationTimer = Timer(const Duration(seconds: 2), () => _animationController.forward(from: 0.0));
+            _animationTimer = Timer(const Duration(seconds: 2), () => _animationController!.forward(from: 0.0));
             _tresholds = [
-              _animationController.upperBound / 6.0,
-              _animationController.upperBound / 6.0 * 3.0,
-              _animationController.upperBound / 6.0 * 5.0,
+              _animationController!.upperBound / 6.0,
+              _animationController!.upperBound / 6.0 * 3.0,
+              _animationController!.upperBound / 6.0 * 5.0,
             ];
           }
         }
@@ -438,8 +438,8 @@ class _CupertinoTabBarState extends State<CupertinoTabBar> with SingleTickerProv
 }
 
 class _Separator extends StatelessWidget {
-  final double _height;
-  final double _width;
+  final double? _height;
+  final double? _width;
   final Color _color;
 
   const _Separator(
@@ -484,8 +484,8 @@ class _Indicator extends StatelessWidget {
   final Alignment _alignment;
   final Duration _duration;
   final Curve _curve;
-  final double _height;
-  final double _width;
+  final double? _height;
+  final double? _width;
   final Color _color;
   final BorderRadius _borderRadius;
   final bool _useShadow;
@@ -534,7 +534,7 @@ class _Indicator extends StatelessWidget {
 
 class _ExpandedInnerContainer extends StatelessWidget {
   final Widget _child;
-  final double _maxHeight;
+  final double? _maxHeight;
   final Color _color;
   final BorderRadius _borderRadius;
 
@@ -560,8 +560,8 @@ class _ExpandedInnerContainer extends StatelessWidget {
 
 class _RegularInnerContainer extends StatelessWidget {
   final Widget _child;
-  final double _height;
-  final double _width;
+  final double? _height;
+  final double? _width;
   final Color _color;
   final BorderRadius _borderRadius;
 
@@ -588,7 +588,7 @@ class _RegularInnerContainer extends StatelessWidget {
 }
 
 class _FittedMiddleContainer extends StatelessWidget {
-  final ScrollController _scrollController;
+  final ScrollController? _scrollController;
   final Widget _child;
 
   const _FittedMiddleContainer(
@@ -607,7 +607,7 @@ class _FittedMiddleContainer extends StatelessWidget {
 }
 
 class _RegularMiddleContainer extends StatelessWidget {
-  final ScrollController _scrollController;
+  final ScrollController? _scrollController;
   final Widget _child;
   final double _horizontalPadding;
   final double _verticalPadding;
@@ -634,8 +634,8 @@ class _RegularMiddleContainer extends StatelessWidget {
 
 class _FittedOuterContainer extends StatelessWidget {
   final Widget _child;
-  final double _height;
-  final double _width;
+  final double? _height;
+  final double? _width;
   final double _horizontalPadding;
   final double _verticalPadding;
   final BorderRadius _borderRadius;
@@ -667,8 +667,8 @@ class _FittedOuterContainer extends StatelessWidget {
 
 class _RegularOuterContainer extends StatelessWidget {
   final Widget _child;
-  final double _height;
-  final double _width;
+  final double? _height;
+  final double? _width;
 
   const _RegularOuterContainer(
     this._child,
